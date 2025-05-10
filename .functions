@@ -1,0 +1,6 @@
+#!/bin/bash
+
+fzp() {
+ file=$(fzf -e --preview-window "60%" --preview "bat --color=always --style=numbers --line-range=:500 {}")
+ [ -n "$file" ] && nano "$file" 
+}

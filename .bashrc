@@ -1,4 +1,6 @@
 #!/bin/bash
+export TERMINAL=kitty
+
 . ~/.dotfiles/.aliases
 . ~/.dotfiles/.functions
 

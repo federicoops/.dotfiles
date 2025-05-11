@@ -4,3 +4,21 @@ fzp() {
  file=$(fzf -e --preview-window "60%" --preview "bat --color=always --style=numbers --line-range=:500 {}")
  [ -n "$file" ] && nano "$file" 
 }
+
+fzg() {
+  local query
+  query="${1:-}"
+
+  if [[ -z "$query" ]]; then
+    echo "Usage: fzg <search_term>"
+    return 1
+  fi
+
+  rg --hidden --glob '!.git/*' --line-number --no-heading --color=always "$query" \
+    | fzf --preview-window "60%" --ansi --with-nth=1.. \
+          --delimiter ':' \
+          --preview 'bat --style=numbers --color=always --highlight-line {2} --line-range {2}: {1}' \
+          --bind 'enter:execute(nano +{2} {1})'
+}
+
+

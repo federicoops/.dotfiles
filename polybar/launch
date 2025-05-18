@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Debugging output to a log file
+echo "Launching Polybar..." >> ~/.config/polybar/debug.log
+
+# Kill any running polybar instances
+killall polybar
+
+# Start Polybar
+polybar mybar >> ~/.config/polybar/debug.log 2>&1 &
